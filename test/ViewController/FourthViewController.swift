@@ -15,11 +15,8 @@ class FouthViewController: UIViewController {
         // ただ背景色がシアンなだけ
         view.backgroundColor = UIColor.systemPink
         // ボタンを設置
+        buttona.frame = CGRect(x: 10, y: 70, width: 100, height: 30)
         view.addSubview(buttona)
-        self.buttona.snp.makeConstraints { (make) in
-            make.centerX.equalToSuperview() // X軸中心を親Viewに合わせる
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(100) //下から100ポイント上に配置
-        }
     }
     @objc func buttonDidTap(_ sender: UIButton) {
         let secondViewController = SecondViewController()
