@@ -1,8 +1,8 @@
 import UIKit
 
-class MenuTableVC: UIViewController {
+class MenuDetailTableVC: UIViewController {
     
-    private var remindersRepository = InMemoryMenusRepository()
+    private var menusRepository = InMemoryMenusRepository()
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +25,7 @@ class MenuTableVC: UIViewController {
 }
 
 // MARK: - UI Setup
-extension MenuTableVC {
+extension MenuDetailTableVC {
     
     private func setupUI() {
         if #available(iOS 13.0, *) {
@@ -44,7 +44,7 @@ extension MenuTableVC {
 }
 
 // MARK: - UITableViewDelegate & DataSource
-extension MenuTableVC: UITableViewDelegate, UITableViewDataSource {
+extension MenuDetailTableVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -54,8 +54,12 @@ extension MenuTableVC: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView,cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell") as! MenuCell
-        cell.titleLabel.text = remindersRepository.get(index:indexPath.section).title
+        cell.titleLabel.text = menusRepository.get(index:indexPath.section).title
         return cell
     }
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.section)
+        let VC = ThradViewController()
+        self.navigationController?.pushViewController(VC, animated: true)
+    }
 }
